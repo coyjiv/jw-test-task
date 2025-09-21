@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { httpClient } from "../lib/http"
-import { ShowcaseSchema, type Showcase } from "../lib/schemas"
-import { resolveReferences } from "../lib/reference-resolver"
+import { httpClient } from "@/src/shared/lib/http"
+import { ShowcaseSchema, type Showcase } from "@/src/entities/content/schemas"
+import { resolveReferences } from "@/src/entities/content/reference-resolver"
 
 export type ShowcaseType = "web" | "mobile" | "tv"
 

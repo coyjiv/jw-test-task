@@ -1,8 +1,8 @@
-import { ServerContentCard } from "./server-content-card"
-import { ShowcaseLoadingSkeleton } from "./loading-skeleton"
-import { ServerErrorState } from "./server-error-state"
-import { EmptyState } from "./empty-state"
-import { fetchMainpageShowcaseServer } from "@/lib/api/server-showcase"
+import { ServerContentCard } from "../content-card/server-content-card"
+import { ShowcaseLoadingSkeleton } from "@/src/shared/ui/loading-skeleton"
+import { ServerErrorState } from "@/src/shared/ui/server-error-state"
+import { EmptyState } from "@/src/shared/ui/empty-state"
+import { fetchMainpageShowcaseServer } from "@/src/shared/api/server-showcase"
 
 interface ServerShowcaseGridProps {
   showcaseType?: "web" | "mobile" | "tv"

@@ -1,11 +1,11 @@
 "use client"
 
-import { useMainpageShowcase } from "@/hooks/use-mainpage-showcase"
-import { ContentCard } from "./content-card"
-import { ShowcaseLoadingSkeleton } from "./loading-skeleton"
-import { ClientErrorState } from "./client-error-state"
-import { EmptyState } from "./empty-state"
-import { Button } from "@/components/ui/button"
+import { useMainpageShowcase } from "./use-mainpage-showcase"
+import { ContentCard } from "../content-card/content-card"
+import { ShowcaseLoadingSkeleton } from "@/src/shared/ui/loading-skeleton"
+import { ClientErrorState } from "@/src/shared/ui/client-error-state"
+import { EmptyState } from "@/src/shared/ui/empty-state"
+import { Button } from "@/src/shared/ui/button"
 import { RefreshCw } from "lucide-react"
 
 interface ShowcaseGridProps {

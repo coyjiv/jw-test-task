@@ -1,6 +1,6 @@
-import { serverHttpClient } from "../server-http"
-import { ShowcaseSchema, type Showcase } from "../schemas"
-import { resolveReferencesServer } from "../server-reference-resolver"
+import { serverHttpClient } from "../lib/server-http"
+import { ShowcaseSchema, type Showcase } from "../../entities/content/schemas"
+import { resolveReferencesServer } from "../../entities/content/server-reference-resolver"
 import { API_CONFIG, type ShowcaseType } from "../config/api"
 
 export async function fetchMainpageShowcaseServer(showcaseType: ShowcaseType = "web"): Promise<Showcase> {

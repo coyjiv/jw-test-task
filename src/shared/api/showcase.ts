@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { httpClient } from "../http"
-import { ShowcaseSchema, type Showcase } from "../schemas"
-import { resolveReferences } from "../reference-resolver"
+import { httpClient } from "../lib/http"
+import { ShowcaseSchema, type Showcase } from "../../entities/content/schemas"
+import { resolveReferences } from "../../entities/content/reference-resolver"
 import { API_CONFIG, type ShowcaseType } from "../config/api"
 
 export async function fetchMainpageShowcase(showcaseType: ShowcaseType = "web"): Promise<Showcase> {

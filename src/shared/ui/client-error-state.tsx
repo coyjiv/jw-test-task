@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "./button"
 import { AlertCircle, RefreshCw } from "lucide-react"
 
 interface ClientErrorStateProps {

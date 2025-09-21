@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Layout } from "@/components/layout"
+import { Button } from "@/src/shared/ui/button"
+import { Layout } from "@/src/widgets/layout/layout"
 
 export default function RenderingModesPage() {
   return (

@@ -1,4 +1,4 @@
-import { serverHttpClient } from "./server-http"
+import { httpClient } from "../../shared/lib/http"
 import { 
   GenreSchema, 
   ContentLabelSchema, 
@@ -20,6 +20,7 @@ const SCHEMA_MAP = {
   kind: KindSchema,
 } as const
 
+// Reference pattern: "type:id"
 export interface Reference {
   type: string
   id: string
@@ -36,7 +37,7 @@ export function parseReference(ref: string): Reference | null {
   return { type, id }
 }
 
-import { API_CONFIG } from "./config/api"
+import { API_CONFIG } from "../../shared/config/api"
 
 const REFERENCE_ENDPOINTS: Record<string, string> = {
   genre: API_CONFIG.ENDPOINTS.METADATA.GENRES,
@@ -51,9 +52,10 @@ const REFERENCE_ENDPOINTS: Record<string, string> = {
   contentbanner: API_CONFIG.ENDPOINTS.ASSETS.CONTENT_BANNERS,
 }
 
+// Cache for resolved references
 const referenceCache = new Map<string, any>()
 
-export async function resolveReferenceServer(ref: string): Promise<any> {
+export async function resolveReference(ref: string): Promise<any> {
   if (referenceCache.has(ref)) {
     return referenceCache.get(ref)
   }
@@ -63,12 +65,13 @@ export async function resolveReferenceServer(ref: string): Promise<any> {
 
   const endpoint = REFERENCE_ENDPOINTS[parsed.type]
   if (!endpoint) {
-    console.warn(`[ServerReferenceResolver] Unknown reference type: ${parsed.type}`)
+    console.warn(`[ReferenceResolver] Unknown reference type: ${parsed.type}`)
     return ref
   }
 
   try {
-    const data = await serverHttpClient<any[]>(endpoint)
+    
+    const data = await httpClient<any[]>(endpoint)
     const item = data.find((item) => item.oid === ref)
 
     if (item) {
@@ -79,27 +82,27 @@ export async function resolveReferenceServer(ref: string): Promise<any> {
       return resolved
     }
 
-    console.warn(`[ServerReferenceResolver] Reference not found: ${ref}`)
+    console.warn(`[ReferenceResolver] Reference not found: ${ref}`)
     return ref
   } catch (error) {
-    console.error(`[ServerReferenceResolver] Failed to resolve ${ref}:`, error)
+    console.error(`[ReferenceResolver] Failed to resolve ${ref}:`, error)
     return ref
   }
 }
 
-export async function resolveReferencesServer(input: any): Promise<any> {
+export async function resolveReferences(input: any): Promise<any> {
   if (typeof input === "string" && isReference(input)) {
-    return await resolveReferenceServer(input)
+    return await resolveReference(input)
   }
 
   if (Array.isArray(input)) {
-    return await Promise.all(input.map((item) => resolveReferencesServer(item)))
+    return await Promise.all(input.map((item) => resolveReferences(item)))
   }
 
   if (input && typeof input === "object") {
     const resolved: any = {}
     for (const [key, value] of Object.entries(input)) {
-      resolved[key] = await resolveReferencesServer(value)
+      resolved[key] = await resolveReferences(value)
     }
     return resolved
   }

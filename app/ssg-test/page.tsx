@@ -1,6 +1,6 @@
-import { ServerShowcaseGrid } from "@/components/server-showcase-grid"
+import { ServerShowcaseGrid } from "@/src/features/showcase/server-showcase-grid"
 import { Suspense } from "react"
-import { ShowcaseLoadingSkeleton } from "@/components/loading-skeleton"
+import { ShowcaseLoadingSkeleton } from "@/src/shared/ui/loading-skeleton"
 
 export const revalidate = 3600 // 1 hour revalidation
 

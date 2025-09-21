@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { API_CONFIG } from "@/lib/config/api"
+import { API_CONFIG } from "@/src/shared/config/api"
 
 export async function GET(request: NextRequest, { params }: { params: { path: string[] } }) {
   try {

@@ -1,8 +1,8 @@
 import Image from "next/image"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import type { ContentBanner, Genre, ContentLabel } from "@/lib/schemas"
-import { getBestImageFromAssets } from "@/lib/utils"
+import { Badge } from "@/src/shared/ui/badge"
+import { Card, CardContent } from "@/src/shared/ui/card"
+import type { ContentBanner, Genre, ContentLabel } from "@/src/entities/content/schemas"
+import { getBestImageFromAssets } from "@/src/shared/lib/utils"
 
 interface ContentCardProps {
   content: ContentBanner

@@ -1,9 +1,9 @@
 "use client"
 
-import { ShowcaseGrid } from "@/components/showcase-grid"
-import { ErrorBoundary } from "@/components/error-boundary"
+import { ShowcaseGrid } from "@/src/features/showcase/showcase-grid"
+import { ErrorBoundary } from "@/src/shared/ui/error-boundary"
 import { Suspense } from "react"
-import { ShowcaseLoadingSkeleton } from "@/components/loading-skeleton"
+import { ShowcaseLoadingSkeleton } from "@/src/shared/ui/loading-skeleton"
 
 export default function SPATestPage() {
   return (
