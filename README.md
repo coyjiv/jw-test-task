@@ -4,16 +4,18 @@ Production-ready приложение для отображения контен
 
 ## 🏗️ Архитектура
 
-Проект построен на основе **Feature-Sliced Design (FSD)** архитектуры:
+Проект построен на основе **Feature-Sliced Design (FSD)** архитектуры для логики и компонентов, а страницы используют **Next.js App Router**:
 
 ```
+app/                       # Next.js App Router (маршруты)
+├── page.tsx              # Главная страница (/)
+├── ssr-test/page.tsx     # SSR тест (/ssr-test)
+├── ssg-test/page.tsx     # SSG тест (/ssg-test)
+├── spa-test/page.tsx     # SPA тест (/spa-test)
+├── rendering-modes/page.tsx
+└── api/proxy/[...path]/route.ts
+
 src/
-├── app/                    # Next.js App Router (маршруты)
-│   ├── page.tsx           # Главная страница (/)
-│   ├── ssr-test/page.tsx  # SSR тест (/ssr-test)
-│   ├── ssg-test/page.tsx  # SSG тест (/ssg-test)
-│   ├── spa-test/page.tsx  # SPA тест (/spa-test)
-│   └── rendering-modes/page.tsx
 ├── features/              # Features layer (функциональность)
 │   ├── content-card/      # Карточка контента
 │   └── showcase/          # Витрина контента
@@ -120,7 +122,6 @@ pnpm run start
 export const API_CONFIG = {
   CMS_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
   IMAGE_BASE_URL: process.env.NEXT_PUBLIC_IMAGE_BASE_URL,
-  // ... остальные настройки
 }
 ```
 
@@ -135,13 +136,9 @@ export const API_CONFIG = {
 
 Проект следует принципам Feature-Sliced Design:
 
-- **App** - маршрутизация и глобальная конфигурация
-- **Pages** - страницы приложения (в Next.js App Router)
-- **Widgets** - композитные блоки (Header, Layout)
 - **Features** - бизнес-функциональность (Showcase, ContentCard)
+- **Widgets** - композитные блоки (Header, Layout)
 - **Entities** - бизнес-сущности (Content, Schemas)
 - **Shared** - переиспользуемый код (UI, API, Utils)
 
-## 📝 Лицензия
-
-Тестовое задание для JW.
+**Страницы** находятся в корневой папке `app/` согласно Next.js App Router.
